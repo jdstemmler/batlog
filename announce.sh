@@ -1,1 +1,1 @@
-echo $(hostname) `date` >> /home/jstemm/.batlog/wakelog.txt
+echo $(hostname) `date` >> /home/jstemm/.batlog/$(hostname)-wakelog.dat
