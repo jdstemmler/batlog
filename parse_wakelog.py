@@ -10,7 +10,7 @@ import numpy
 
 # In[57]:
 
-D = pd.read_table('wakelog.txt', names = ['host', 'dow', 'month', 'day', 'time', 'tz', 'year'],
+D = pd.read_table('wakestats.dat', names = ['host', 'dow', 'month', 'day', 'time', 'tz', 'year'],
                                           parse_dates = {'dtime': ['dow', 'month', 'day', 'time', 'year', 'tz']}, 
                                           sep = ' ', 
                                           index_col='dtime', 
@@ -62,5 +62,5 @@ ax.set_xlabel('Day of Week')
 ax.set_ylabel('Computer Useage')
 plt.legend()
 
-plt.savefig('week_use.png')
+plt.savefig('out/week_use.png')
 
