@@ -39,7 +39,7 @@ def wk2num(dt):
 H = D.groupby('host')
 
 
-# In[60]:
+# In[64]:
 
 import matplotlib.pyplot as plt
 
@@ -48,7 +48,7 @@ ax = fig.add_subplot(111)
 
 for g in H.groups.keys():
     counts = [wk2num(v) for v in H.get_group(g).index]
-    ax.hist(counts, bins=numpy.arange(0, 7, 0.05),  histtype='step', label=g)
+    ax.hist(counts, bins=numpy.arange(0, 7, 0.03),  histtype='step', label=g)
         
     
 
