@@ -1,0 +1,2 @@
+* * * * * ${HOME}/.batlog/announce.sh
+@daily cat ${HOME}/.batlog/$(hostname)-wakelog.dat >> ${HOME}/.batlog/wakestats.dat && rm ${HOME}/.batlog/$(hostname)-wakelog.dat
