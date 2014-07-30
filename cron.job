@@ -1,1 +1,3 @@
 * * * * * ${HOME}/.batlog/announce.sh
+@daily python ${HOME}/.batlog/parse_wakelog.py $(hostname)-wakelog.dat baker_weekly.png
+@monthly cp ${HOME}/.batlog/$(hostname)-wakelog.dat ${HOME}/Dropbox/workshare/batlog/$(hostname)-$(date +%F)-wakelog.backup

@@ -11,7 +11,14 @@ import sys
 for arg in sys.argv:
     if 'dat' in arg:
         dfile = arg
+    if '.png' in arg:
+        fname = arg
 
+if not dfile:
+    dfile = 'wakelogs.dat'
+
+if not fname:
+    fname = 'week_use.png'
 # In[57]:
 
 D = pd.read_table(dfile, names = ['host', 'dow', 'month', 'day', 'time', 'tz', 'year'],
@@ -66,5 +73,4 @@ ax.set_xlabel('Day of Week')
 ax.set_ylabel('Computer Useage')
 plt.legend()
 
-plt.savefig('out/week_use.png')
-
+plt.savefig('out/'+fname)
