@@ -1,0 +1,90 @@
+Wed Oct  8 08:00:00 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"DevicePowerState"=1,"CurrentPowerState"=0,"MaxPowerState"=3,"DesiredPowerState"=1}
+Wed Oct  8 08:05:00 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=3,"CurrentPowerState"=3}
+Wed Oct  8 08:10:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=3,"CurrentPowerState"=3}
+Wed Oct  8 08:15:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:20:01 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:25:00 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:30:00 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:35:01 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:40:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:45:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:50:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 08:55:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 09:00:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 09:05:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 09:10:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 09:15:00 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=3,"CurrentPowerState"=3}
+Wed Oct  8 09:20:00 PDT 2014
+| WiFi status: active  with SSID Danger Zone
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=0,"CurrentPowerState"=0}
+Wed Oct  8 09:25:00 PDT 2014
+| WiFi status: inactive  with SSID 
+| Ethernet status: active
+    | |           "LegacyBatteryInfo" = {"Amperage"=0,"Flags"=5,"Capacity"=8978,"Current"=8872,"Voltage"=12675,"Cycle Count"=11}
+    | | | | |         "IOPowerManagement" = {"MaxPowerState"=3,"DevicePowerState"=3,"CurrentPowerState"=3}
