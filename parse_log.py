@@ -26,8 +26,8 @@ def wk2num(dt):
 topdir = os.path.join(os.getenv('HOME'), '.logstats')
 dbdir = os.path.join(os.getenv('HOME'), 'Dropbox', 'workshare', 'batlog')
 
-#log = os.path.join(topdir, 'batlog.dat')
-log = os.path.join(topdir, 'example.data')
+log = os.path.join(topdir, 'batlog.dat')
+#log = os.path.join(topdir, 'example.data')
 
 #D = pd.read_table(wake, names = ['dow', 'month', 'day', 'time', 'tz', 'year', 'user', 'SSID', 'runmode'],
 #                                          parse_dates = {'dtime': ['dow', 'month', 'day', 'time', 'year']},
@@ -52,7 +52,11 @@ with open(log) as f:
         if len(sid) == 0:
             sid = "WiFi Disconnected"
         wifistat = b.split()[3]
-        ethstat = c.split()[3]
+        C = c.split()
+        if len(C) < 2:
+            ethstat = "inactive"
+        elif len(C) >= 3:
+            ethstat = "active"
         
         # parse the battery info        
         D = eval(d.split(" = ")[1].replace("=", ":"))
