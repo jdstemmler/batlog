@@ -1,2 +1,5 @@
+*.test
 *-wakelog.dat
 .ipynb*
+*.dat
+*.png

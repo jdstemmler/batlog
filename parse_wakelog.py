@@ -19,10 +19,13 @@ if not fname:
     fname = 'week_use.png'
 # In[57]:
 
-dfile = os.path.join(os.getenv('HOME'), '.batlog', dfile)
-fname = os.path.join(os.getenv('HOME'), '.batlog', 'out', fname)
+#dfile = os.path.join(os.getenv('HOME'), '.batlog', dfile)
+#fname = os.path.join(os.getenv('HOME'), '.batlog', 'out', fname)
 
-D = pd.read_table(dfile, names = ['host', 'dow', 'month', 'day', 'time', 'tz', 'year'],
+dfile = os.path.join(dfile)
+fname = os.path.join(fname)
+
+D = pd.read_table(dfile, names = ['user', 'dow', 'month', 'day', 'time', 'tz', 'year'],
                                           parse_dates = {'dtime': ['dow', 'month', 'day', 'time', 'year', 'tz']}, 
                                           sep = ' ', 
                                           index_col='dtime', 
@@ -43,7 +46,7 @@ def wk2num(dt):
             
     return wkd + tme
 
-H = D.groupby('host')
+H = D.groupby('user')
 
 import matplotlib.pyplot as plt
 
@@ -64,7 +67,7 @@ ax.set_xlabel('Day of Week')
 ax.set_ylabel('Computer Useage')
 ax.set_title('Computer Useage by Day of Week')
 
-plt.legend()
+#plt.legend()
 
 plt.tight_layout()
 
