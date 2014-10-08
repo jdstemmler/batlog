@@ -182,7 +182,8 @@ histbins = numpy.arange(0, 2016, 3)
 counts = [wk2num(g) for g in DATA.index]
 ax.hist(counts, bins=histbins, histtype='step', label='ALL')
 
-H = DATA[AWAKE].groupby('SSID')
+#H = DATA[AWAKE].groupby('SSID')
+H = DATA.groupby('SSID')
 
 for g in H.groups.keys():
     counts = [wk2num(v) for v in H.get_group(g).index]
