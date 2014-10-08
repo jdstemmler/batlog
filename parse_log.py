@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import pandas as pd
+import itertools
 import datetime
 import calendar
 import numpy
@@ -30,6 +31,19 @@ D = pd.read_table(wake, names = ['dow', 'month', 'day', 'time', 'tz', 'year', 'u
 D = D.fillna("WiFi Disconnected")
 H = D.groupby('SSID')
 
+B = pd.DataFrame(columns=['Amperage', 'Capacity', 'Current', 'Cycle Count', 'Flags', 'Voltage'])
+with open(bat) as f:
+    for c, e in itertools.izip_longest(*[f]*2):
+        a = c.split()
+        dt = a[1]+a[2].zfill(2)+a[3]+a[5]
+        d = datetime.datetime.strptime(dt, '%b%d%H:%M:%S%Y')
+        if e.startswith('    | |           "LegacyBatteryInfo"'):
+            b = eval(e.split(" = ")[1].replace("=", ":"))
+            b['Amperage'] = b['Amperage']/1e16
+            B = B.append(pd.DataFrame(b, index=[d,]))
+        else:
+            continue
+
 wk = [i.dayofyear for i in D.index]
 tod = [-1*numpy.int(numpy.floor((i.to_pydatetime() - datetime.datetime(i.year, i.month, i.day, 0, 0)).seconds / 300.)) for i in D.index]
 #tod = int(numpy.floor(tod))
@@ -43,6 +57,29 @@ ssids = [netnames.index(i) for i in D.SSID]
 
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+
+batfig = plt.figure(figsize=(9,9), dpi=300)
+
+batfig.suptitle("Battery Statistics")
+
+ax = batfig.add_subplot(311)
+ax.plot_date(B.index, B['Cycle Count'], '-')
+ax.set_ylabel('Cycle Count')
+ax.set_xticklabels([])
+ax.grid('on')
+
+ax = batfig.add_subplot(312)
+ax.plot_date(B.index, B['Capacity'], 'k.')
+ax.set_ylabel('Battery Capacity')
+ax.set_xticklabels([])
+ax.grid('on')
+
+ax = batfig.add_subplot(313)
+ax.plot_date(B.index, B['Capacity'], 'k.')
+ax.set_ylabel('Battery Current')
+ax.grid('on')
+
+batfig.savefig(os.path.join(topdir, 'batstats.png'), dpi=300)
 
 fig = plt.figure(figsize=(10,5), dpi=300)
 ax = fig.add_subplot(111)
