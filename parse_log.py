@@ -45,8 +45,13 @@ with open(bat) as f:
             continue
 
 wk = [i.dayofyear for i in D.index]
+wkbat = [i.dayofyear for i in B.index]
+
 tod = [-1*numpy.int(numpy.floor((i.to_pydatetime() - datetime.datetime(i.year, i.month, i.day, 0, 0)).seconds / 300.)) for i in D.index]
-#tod = int(numpy.floor(tod))
+todbat = [-1*numpy.int(numpy.floor((i.to_pydatetime() - datetime.datetime(i.year, i.month, i.day, 0, 0)).seconds / 300.)) for i in B.index]
+
+pct = (B.Current / B.Capacity)*100.
+
 SSID_namelist = D.SSID.unique()
 SSID_namelist.sort()
 
@@ -58,15 +63,16 @@ ssids = [netnames.index(i) for i in D.SSID]
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
+# batfig
+#################################################
 batfig = plt.figure(figsize=(9,9), dpi=300)
-
-batfig.suptitle("Battery Statistics")
 
 ax = batfig.add_subplot(311)
 ax.plot_date(B.index, B['Cycle Count'], '-')
 ax.set_ylabel('Cycle Count')
 ax.set_xticklabels([])
 ax.grid('on')
+ax.set_title('Battery Statistics')
 
 ax = batfig.add_subplot(312)
 ax.plot_date(B.index, B['Capacity'], 'k.')
@@ -79,8 +85,33 @@ ax.plot_date(B.index, B['Capacity'], 'k.')
 ax.set_ylabel('Battery Current')
 ax.grid('on')
 
-batfig.savefig(os.path.join(topdir, 'batstats.png'), dpi=300)
+plt.savefig(os.path.join(topdir, 'batstats.png'), dpi=300)
 
+# batyear
+#################################################
+batyear = plt.figure(figsize=(10, 5), dpi=300)
+ax = batyear.add_axes([0.12, 0.1, 0.9, 0.8])
+
+c = ax.scatter(wkbat, todbat, c=pct, edgecolor='none', marker='s', s=1, cmap=cm.rainbow_r, vmax=100., vmin=0.)
+
+ax.set_xlabel('Day of Year')
+ax.set_ylabel('Time of Day')
+
+ax.set_xlim((0, 366))
+ax.set_ylim((-288, 0))
+
+ax.set_yticks(numpy.arange(0, 25, 3)*-12)
+ax.set_yticklabels(['Midnight', '3am', '6am', '9am', 'Noon', '3pm', '6pm', '9pm', 'Midnight'])
+
+ax.grid('on')
+cb = plt.colorbar(c, pad=0.02)
+cb.set_label('Battery Percentage')
+cb.ax.tick_params(labelsize=8)
+
+plt.savefig(os.path.join(topdir, 'batyear.png'), dpi=300)
+
+# yearview
+#################################################
 fig = plt.figure(figsize=(10,5), dpi=300)
 ax = fig.add_subplot(111)
 
@@ -103,6 +134,9 @@ cb.ax.tick_params(labelsize=8)
 
 plt.savefig(os.path.join(topdir, 'yearview.png'), dpi=300)
 
+
+# weekstats
+#################################################
 fig.clf()
 ax = fig.add_axes([0.05, 0.1, 0.7, 0.8])
 
@@ -128,3 +162,5 @@ ax.set_ylabel('Computer Useage')
 plt.suptitle('Computer Useage by Day of Week and SSID')
 
 plt.savefig(os.path.join(topdir, 'weekstats.png'), dpi=300)
+
+plt.close('all')
