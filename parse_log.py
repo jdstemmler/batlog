@@ -1,5 +1,8 @@
 # coding: utf-8
 
+import sys
+sys.path.extend(['/Users/jstemm/anaconda/lib/python2.7/site-packages'])
+
 import pandas as pd
 import itertools
 import datetime
@@ -7,6 +10,8 @@ import calendar
 import numpy
 import sys
 import os
+
+start_day = datetime.datetime(2014, 10, 8, 0, 0)
 
 def wk2num(dt):
     """take in a datetime object and return a number, 0-6.99 corresponding to day of week and time"""
@@ -19,11 +24,12 @@ def wk2num(dt):
     return tme
 
 topdir = os.path.join(os.getenv('HOME'), '.logstats')
+dbdir = os.path.join(os.getenv('HOME'), 'Dropbox', 'workshare', 'batlog')
 
 wake = os.path.join(topdir, 'wakelog.dat')
 bat = os.path.join(topdir, 'batlog.dat')
 
-D = pd.read_table(wake, names = ['dow', 'month', 'day', 'time', 'tz', 'year', 'user', 'SSID'],
+D = pd.read_table(wake, names = ['dow', 'month', 'day', 'time', 'tz', 'year', 'user', 'SSID', 'runmode'],
                                           parse_dates = {'dtime': ['dow', 'month', 'day', 'time', 'year']},
                                           sep = ' ', 
                                           index_col='dtime', 
@@ -65,27 +71,27 @@ import matplotlib.cm as cm
 
 # batfig
 #################################################
-batfig = plt.figure(figsize=(9,9), dpi=300)
+batfig = plt.figure(figsize=(9,6), dpi=300)
 
-ax = batfig.add_subplot(311)
+ax = batfig.add_subplot(211)
 ax.plot_date(B.index, B['Cycle Count'], '-')
 ax.set_ylabel('Cycle Count')
 ax.set_xticklabels([])
 ax.grid('on')
 ax.set_title('Battery Statistics')
 
-ax = batfig.add_subplot(312)
-ax.plot_date(B.index, B['Capacity'], 'k.')
-ax.set_ylabel('Battery Capacity')
-ax.set_xticklabels([])
+ax = batfig.add_subplot(212)
+ax.plot_date(B.index, (B['Capacity']/8440.)*100, 'k.')
+ax.set_ylabel('Battery Capacity (%)')
+#ax.set_xticklabels([])
 ax.grid('on')
 
-ax = batfig.add_subplot(313)
-ax.plot_date(B.index, B['Capacity'], 'k.')
-ax.set_ylabel('Battery Current')
-ax.grid('on')
+#ax = batfig.add_subplot(313)
+#ax.plot_date(B.index, B['Capacity'], 'k.')
+#ax.set_ylabel('Battery Current')
+#ax.grid('on')
 
-plt.savefig(os.path.join(topdir, 'batstats.png'), dpi=300)
+plt.savefig(os.path.join(dbdir, 'batstats.png'), dpi=300)
 
 # batyear
 #################################################
@@ -108,7 +114,7 @@ cb = plt.colorbar(c, pad=0.02)
 cb.set_label('Battery Percentage')
 cb.ax.tick_params(labelsize=8)
 
-plt.savefig(os.path.join(topdir, 'batyear.png'), dpi=300)
+plt.savefig(os.path.join(dbdir, 'batyear.png'), dpi=300)
 
 # yearview
 #################################################
@@ -132,7 +138,7 @@ cb.set_ticklabels(netnames)
 cb.ax.tick_params(labelsize=8)
 
 
-plt.savefig(os.path.join(topdir, 'yearview.png'), dpi=300)
+plt.savefig(os.path.join(dbdir, 'yearview.png'), dpi=300)
 
 
 # weekstats
@@ -161,6 +167,6 @@ ax.set_xlabel('Day of Week')
 ax.set_ylabel('Computer Useage')
 plt.suptitle('Computer Useage by Day of Week and SSID')
 
-plt.savefig(os.path.join(topdir, 'weekstats.png'), dpi=300)
+plt.savefig(os.path.join(dbdir, 'weekstats.png'), dpi=300)
 
 plt.close('all')
