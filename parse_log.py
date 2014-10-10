@@ -38,7 +38,7 @@ log = os.path.join(topdir, 'batlog.dat')
 #H = D.groupby('SSID')
 
 DATA = pd.DataFrame(columns=['Capacity', 'CycleCount', 'BatLife',
-                          'DevicePowerState', 'SSID', 'PCT',
+                          'CurrentPowerState', 'SSID', 'PCT',
                           'WiFi', 'Eth'])
 with open(log) as f:
     for a, b, c, d, e in itertools.izip_longest(*[f]*5):
@@ -70,14 +70,14 @@ with open(log) as f:
                           'PCT' : (1.*D['Current']/D['Capacity'])*100.,
                           'BatLife' : D['Capacity']/8440.*100.,
                           'CycleCount': D['Cycle Count'],
-                          'DevicePowerState': E['DevicePowerState'],
+                          'CurrentPowerState': E['CurrentPowerState'],
                           'SSID': sid,
                           'WiFi': wifistat,
                           'Eth': ethstat}, index=[dt,])
         
         DATA = DATA.append(G)
 
-AWAKE = DATA.DevicePowerState != 0
+AWAKE = DATA.CurrentPowerState != 0
 DOY = [i.dayofyear for i in DATA.index]
 
 TOD = [-1*numpy.int(numpy.floor(
@@ -182,8 +182,8 @@ histbins = numpy.arange(0, 2016, 3)
 counts = [wk2num(g) for g in DATA.index]
 ax.hist(counts, bins=histbins, histtype='step', label='ALL')
 
-#H = DATA[AWAKE].groupby('SSID')
-H = DATA.groupby('SSID')
+H = DATA[AWAKE].groupby('SSID')
+#H = DATA.groupby('SSID')
 
 for g in H.groups.keys():
     counts = [wk2num(v) for v in H.get_group(g).index]
