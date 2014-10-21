@@ -103,8 +103,6 @@ with open(log) as f:
         
         DATA = DATA.append(G)
 
-AWAKE = DATA[DATA.CurrentPowerState != 0]
-
 nDays = (DATA.index[-1] - DATA.index[0]).days + 1
 nTimeOfDay = (60./5)*24 # number of 5 minute samples per day
 
@@ -119,12 +117,13 @@ netnames = SSID_namelist.tolist()
 ssids = [netnames.index(i) for i in DATA.SSID]
 
 DATA['ssids'] = ssids
+AWAKE = DATA[DATA.CurrentPowerState != 0]
 
 batgrid = numpy.zeros((nTimeOfDay, nDays))*numpy.nan
 ssidgrid = numpy.zeros_like(batgrid)*numpy.nan
-awakegrid = numpy.zeros_like(batgrid)*numpy.nan
+#awakegrid = numpy.zeros_like(batgrid)
 
-for i in DATA.iterrows():
+for i in AWAKE.iterrows():
     dS = (i[0].date() - startDate).days
     tOD = numpy.int(numpy.floor(
            (i[0].to_pydatetime() - 
@@ -133,12 +132,12 @@ for i in DATA.iterrows():
     batgrid[tOD, dS] = i[1].PCT
     ssidgrid[tOD, dS] = i[1].ssids
     
-    if i[1].CurrentPowerState !=0:
-        awakegrid[tOD, dS] = 1
+    #if i[1].CurrentPowerState !=0:
+    #    awakegrid[tOD, dS] = 1
 
 
 import matplotlib.pyplot as plt
-import matplotlib.cm as cm
+from matplotlib import cm
 
 # batfig
 #################################################
@@ -193,13 +192,24 @@ plt.savefig(os.path.join(dbdir, 'batyear.png'), dpi=300)
 
 # yearview
 #################################################
+from matplotlib.colors import ListedColormap as LC
+
 fig = plt.figure(figsize=(10,5), dpi=300)
 ax = fig.add_subplot(111)
 
 #c=ax.scatter(DOY, TOD, c=numpy.array(ssids), edgecolor='none', marker='s', 
 #             s=1, cmap=cm.rainbow)
 
-c = ax.imshow(ssidgrid, interpolation='none', aspect='auto', cmap=cm.rainbow_r)
+mp = cm.jet_r(numpy.linspace(0, 1, nSSID))
+ssidcols = LC(mp, 'ssidcols')
+cm.register_cmap(cmap = ssidcols)
+
+ssidtick = AWAKE.ssids.unique()
+ssidtick.sort()
+ssidtick = ssidtick * (ssidtick.max() / float(nSSID))
+ssidtick = ssidtick + ssidtick[1]/2.
+
+c = ax.imshow(ssidgrid, interpolation='none', aspect='auto', cmap=ssidcols)
 
 ax.set_xlabel('Day of Year')
 ax.set_ylabel('Time of Day')
@@ -212,7 +222,7 @@ ax.set_yticklabels(['Midnight', '3am', '6am', '9am', 'Noon', '3pm', '6pm', '9pm'
 
 ax.grid('on')
 cb = plt.colorbar(c)
-cb.set_ticks(numpy.arange(nSSID))
+cb.set_ticks(ssidtick)
 cb.set_ticklabels(netnames)
 cb.ax.tick_params(labelsize=8)
 
