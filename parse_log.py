@@ -103,7 +103,7 @@ with open(log) as f:
         
         DATA = DATA.append(G)
 
-nDays = (DATA.index[-1] - DATA.index[0]).days + 1
+nDays = (DATA.index[-1].date() - DATA.index[0].date()).days + 1
 nTimeOfDay = (60./5)*24 # number of 5 minute samples per day
 
 startDate = DATA.index[0].date()

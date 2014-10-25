@@ -1,4 +1,4 @@
 */5 * * * * ${HOME}/.logstats/logger.sh
-@daily /Users/jstemm/anaconda/bin/python ${HOME}/.logstats/parse_log.py
+45 1	* * *  /Users/jstemm/anaconda/bin/python ${HOME}/.logstats/parse_log.py
 @monthly cp ${HOME}/.logstats/wakelog.dat ${HOME}/Dropbox/workshare/batlog/$(date +%F)-wakelog.backup
 @monthly cp ${HOME}/.logstats/batlog.dat ${HOME}/Dropbox/workshare/batlog/$(date +%F)-batlog.backup
